@@ -12,7 +12,7 @@ Projeto de estudo em PHP puro e MySQL com cadastro, login, painel e logout.
 
 ## Tecnologias
 
-- PHP 8+
+- PHP 7.1+, com as extensões `pdo_mysql` e `mbstring` ativas (o Laragon já inclui ambas)
 - MySQL / MariaDB
 - PDO com prepared statements
 
@@ -53,3 +53,14 @@ Projeto de estudo em PHP puro e MySQL com cadastro, login, painel e logout.
 ```
 cadastro.php → tratar_cadastro.php → login.php → tratar_login.php → painel.php → logout.php
 ```
+
+## Limitações conhecidas
+
+Projeto de estudo, então algumas coisas ainda estão simples de propósito:
+
+- A mensagem de erro é lida da URL (`?erro=...`). O texto é escapado, então não há XSS, mas qualquer texto pode aparecer na página. O ideal é usar uma lista de mensagens permitidas, como já é feito para `?msg=`.
+- Se dois cadastros com o mesmo email acontecerem ao mesmo tempo, o `UNIQUE` do banco recusa o segundo, mas o PHP não captura o erro e o usuário vê uma exceção técnica.
+- O login não tem limite de tentativas.
+- Os cookies de sessão usam as configurações padrão do PHP, sem `httponly`, `secure` e `samesite` explícitos.
+- O logout é feito por link (GET), o que permite encerrar a sessão de outro site.
+- A senha tem mínimo de 6 caracteres e nenhum máximo. O bcrypt usa só os primeiros 72 bytes da senha.
