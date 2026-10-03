@@ -53,10 +53,3 @@ Projeto de estudo em PHP puro e MySQL com cadastro, login, painel e logout.
 ```
 cadastro.php → tratar_cadastro.php → login.php → tratar_login.php → painel.php → logout.php
 ```
-
-## Próximos passos (ideias para estudar)
-
-- Limitar tentativas de login
-- Recuperação de senha por email
-- Confirmação de email no cadastro
-- Testes automatizados
